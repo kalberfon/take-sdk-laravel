@@ -12,12 +12,12 @@ class ExampleTest extends TestCase
     {
         $service = new WhatsAppService("http://test.com", "----- test key ------", "------ namespace test ----");
         $messageId = Uuid::uuid();
-        $ret = $service->sendTemplate("554891015101@wa.gw.msging.net", [
+        $ret = $service->sendTemplate("554855515101@wa.gw.msging.net", [
             [
                 "type" => "text",
                 'text' => "teste",
             ]
-        ], $messageId, "appai_entrada");
+        ], $messageId, "template");
         $this->assertArrayHasKey("id", $ret);
         $this->assertArrayHasKey("type", $ret);
         $this->assertArrayHasKey("to", $ret);
