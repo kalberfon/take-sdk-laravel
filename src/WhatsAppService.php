@@ -23,14 +23,14 @@ class WhatsAppService
         $this->baseUrl = $baseUrl;
         $this->key = $key;
         $this->namespace = $namespace;
-
-        $this->client = new Client([
-            RequestOptions::HEADERS => [
-                "Authorization" => "Key {$this->key}"
-            ]
-        ]);
     }
-
+    /**
+     * @param string $key
+     * @return void
+     */
+    public function setKey(string $key) {
+        $this->key = $key;
+    }
     /**
      * @param string $endpoint
      * @param array $params
@@ -39,7 +39,12 @@ class WhatsAppService
      */
     private function callService(string $endpoint, array $params = [])
     {
-        $response = $this->client->post("{$this->baseUrl}{$endpoint}", [
+        $client = new Client([
+            RequestOptions::HEADERS => [
+                "Authorization" => "Key {$this->key}"
+            ]
+        ]);
+        $response = $client->post("{$this->baseUrl}{$endpoint}", [
             RequestOptions::JSON => $params
         ]);
 
