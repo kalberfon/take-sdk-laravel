@@ -34,4 +34,4 @@ Versions will be supported for a limited amount of time.
 
 | Version | Laravel Version | Php Version  |  
 |---- |----|----|  
-| dev-main | <=5.8 | <=7.1 |
+| dev-main | >= 5.8 | <=7.1 |
