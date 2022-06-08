@@ -90,8 +90,19 @@ class WhatsAppService
      * @param $templateId
      * @return array|null
      */
-    public function sendTemplate($whatsId, $localizableParams, $id, $templateId)
+    public function sendTemplate($whatsId, $localizableParams, $id, $templateId, $buttonParams = [])
     {
+        $components = [
+            [
+                "type" => "body",
+                "parameters" => $localizableParams
+            ]
+        ];
+        if (!empty($anotherComponentParams)) {
+            $components[] = array_merge([
+                "type" => "button"
+            ], $buttonParams);
+        }
         $params = [
             'id' => $id,
             'to' => $whatsId,
@@ -105,13 +116,7 @@ class WhatsAppService
                         'code' => 'pt_BR',
                         'policy' => 'deterministic',
                     ],
-                    'components' => [
-                       [
-                           "type" => "body",
-                           "parameters" => $localizableParams
-                       ]
-
-                    ]
+                    'components' => $components
                 ]
             ]
         ];
