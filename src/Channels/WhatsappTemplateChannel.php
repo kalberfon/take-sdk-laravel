@@ -19,7 +19,7 @@ class WhatsappTemplateChannel
         $message = $notification->toWhatsapp($notifiable);
 
         WhatsAppSdk::sendTemplate($message["whatsapp_id"], $message['localizable_params'],
-            $message['id'], $message['form_template']);
+            $message['id'], $message['form_template'], $message['button_params'] ?? []);
 
     }
 }
