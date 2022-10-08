@@ -19,12 +19,7 @@
         }
     ],
     "require": {
-<<<<<<< Updated upstream
-        "guzzlehttp/guzzle": "^7.2",
-        "ramsey/uuid": "^3.9"
-=======
         "guzzlehttp/guzzle": "^7.2"
->>>>>>> Stashed changes
     },
     "require-dev": {
         "phpunit/phpunit": "^7.5",
