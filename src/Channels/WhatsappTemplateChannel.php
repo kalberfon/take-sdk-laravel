@@ -19,7 +19,7 @@ class WhatsappTemplateChannel
     {
         $message = $notification->toWhatsapp($notifiable);
 
-        if ($notification instanceof WithChangeBuilderInterface) {
+        if (method_exists($notification, 'toBuilder')) {
             $newBuilder = $notification->toBuilder();
             if (!empty($newBuilder))
                 WhatsAppSdk::changeBuilder(
