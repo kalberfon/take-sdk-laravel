@@ -125,10 +125,8 @@ class WhatsAppService
         ];
         return $this->callService('/messages', $params);
     }
-    public function changeBuilder(string $whatsappId, string $resourceName, string $stateId, string $resourceId): void
+    public function changeBuilder(string $id, string $whatsappId, string $resourceName, string $stateId, string $resourceId): void
     {
-        $id = Uuid::uuid4()->toString();
-
         $changeBuilderMasterBody = [
             "id" => $id,
             "method" => "set",
