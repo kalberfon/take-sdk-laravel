@@ -21,13 +21,14 @@ class WhatsappTemplateChannel
 
         if ($notification instanceof WithChangeBuilderInterface) {
             $newBuilder = $notification->toBuilder();
-            WhatsAppSdk::changeBuilder(
-                $newBuilder["id"],
-                $message["whatsapp_id"],
-                $newBuilder["resource_name"],
-                $newBuilder["state_id"],
-                $newBuilder["resource_id"]
-            );
+            if (!empty($newBuilder))
+                WhatsAppSdk::changeBuilder(
+                    $newBuilder["id"],
+                    $message["whatsapp_id"],
+                    $newBuilder["resource_name"],
+                    $newBuilder["state_id"],
+                    $newBuilder["resource_id"]
+                );
         }
 
         WhatsAppSdk::sendTemplate($message["whatsapp_id"], $message['localizable_params'],
