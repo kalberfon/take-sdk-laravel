@@ -4,6 +4,8 @@ namespace Kalberfon\TakeSdkLaravel;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
+use Ramsey\Uuid\Uuid;
+
 /**
  *
  */
@@ -88,9 +90,10 @@ class WhatsAppService
      * @param $localizableParams
      * @param $id
      * @param $templateId
+     * @param array $buttonParams
      * @return array|null
      */
-    public function sendTemplate($whatsId, $localizableParams, $id, $templateId, $buttonParams = [])
+    public function sendTemplate($whatsId, $localizableParams, $id, $templateId, array $buttonParams = []): ?array
     {
         $components = [
             [
@@ -122,7 +125,30 @@ class WhatsAppService
         ];
         return $this->callService('/messages', $params);
     }
+    public function changeBuilder(string $whatsappId, string $resourceName, string $stateId, string $resourceId): void
+    {
+        $id = Uuid::uuid4()->toString();
 
+        $changeBuilderMasterBody = [
+            "id" => $id,
+            "method" => "set",
+            "uri" => "/contexts/{$whatsappId}/Master-State",
+            "type" => "text/plain",
+            "resource" => "{$resourceName}@msging.net"
+        ];
+        $this->callService("/commands", $changeBuilderMasterBody);
+        /**
+         * Set builder and first item
+         */
+        $changeBuilderAndStartIn = [
+            "id" => $id,
+            "method" => "set",
+            "uri" => "/contexts/{$whatsappId}/stateid@{$stateId}",
+            "type" => "text/plain",
+            "resource" => $resourceId
+        ];
+        $this->callService("/commands", $changeBuilderAndStartIn);
+    }
     /**
      * @param string $phone
      * @param string $id

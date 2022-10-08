@@ -9,6 +9,7 @@ use Kalberfon\TakeSdkLaravel\WhatsAppService;
  * @method bool sendMessage($whatsId, $localizableParams, $id, $templateId)
  * @method string getWhatsappId(string $phone, string $id)
  * @method array sendTemplate(string $whatsId, array $localizableParams, string $id, string $templateId)
+ * @method void changeBuilder(string $whatsappId, string $resourceName, string $stateId, string $resourceId)
  */
 
 class WhatsAppSdk
