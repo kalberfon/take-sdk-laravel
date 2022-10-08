@@ -1,6 +1,6 @@
 <?php
 
-namespace Kalberfon\TakeSdkLaravel\Contacts;
+namespace Kalberfon\TakeSdkLaravel\Contracts;
 
 interface WithChangeBuilderInterface
 {
