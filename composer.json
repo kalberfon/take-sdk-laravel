@@ -20,7 +20,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": "^7.2",
         "ramsey/uuid": "^3.9"
     },
     "require-dev": {
