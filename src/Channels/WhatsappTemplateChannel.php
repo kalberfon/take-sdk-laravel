@@ -3,6 +3,7 @@
 namespace Kalberfon\TakeSdkLaravel\Channels;
 
 
+use Kalberfon\TakeSdkLaravel\Events\MessageSentTrigger;
 use Kalberfon\TakeSdkLaravel\Facades\WhatsAppSdk;
 use Kalberfon\TakeSdkLaravel\Contacts\WithChangeBuilderInterface;
 
@@ -33,5 +34,7 @@ class WhatsappTemplateChannel
 
         WhatsAppSdk::sendTemplate($message["whatsapp_id"], $message['localizable_params'],
             $message['id'], $message['form_template'], $message['button_params'] ?? []);
+
+        event(new MessageSentTrigger($message['form_template'], $message["whatsapp_id"], $message['id']));
     }
 }
